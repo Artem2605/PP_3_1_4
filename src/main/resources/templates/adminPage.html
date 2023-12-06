@@ -14,6 +14,123 @@
             crossorigin="anonymous"></script>
 </head>
 
+<script>
+
+    function validateName(strForCheck) {
+        let regForTest = /^[A-Za-zА-Яа-яЁё]+$/;
+        return String(strForCheck).toLowerCase().match(regForTest);
+    }
+
+    function validateMail(strForCheck) {
+        let regForTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return String(strForCheck).toLowerCase().match(regForTest);
+    }
+
+    function nameRegExp() {
+        return /^[A-Za-zА-Яа-яЁё]+$/;
+    }
+
+    function submitEditUser() {
+        // const inputFirstName = document.getElementById('userFirstName');
+        // const firstName = inputFirstName.value;
+        // const inputLastName = document.getElementById('userLastName');
+        // const lastName = inputLastName.value;
+        // const inputAge = document.getElementById('userAge');
+        // const age = inputAge.value;
+        // const inputUsername = document.getElementById('userUsername');
+        // const username = inputUsername.value;
+        // const inputPassword = document.getElementById('userPassword');
+        // const password = inputPassword.value;
+        //Проверяем на валидность (update 06.12)
+        // if (!validateMail(document.getElementById('editUsername').value)) {
+        //     document.getElementById('divEditUsername').style.borderColor = "red";
+        //     document.getElementById('editUsername').value = '';
+        //     return false;
+        // } else {
+        //     document.getElementById('newUsername').style.borderColor = "#e5e5e5";
+        // }
+        // if (age < 1 || age > 2023) {
+        //     document.getElementById('newAge').style.borderColor = "red";
+        //     inputAge.value = '';
+        // } else {
+        //     document.getElementById('newAge').style.borderColor = "#e5e5e5";
+        // }
+        // if (password.length < 1) {
+        //     document.getElementById('newPassword').style.borderColor = "red";
+        //     inputPassword.value = '';
+        // } else {
+        //     document.getElementById('newFirstName').style.borderColor = "#e5e5e5";
+        // }
+        // if (!validateName(firstName)) {
+        //     document.getElementById('newFirstName').style.borderColor = "red";
+        //     inputFirstName.value = '';
+        // } else {
+        //     document.getElementById('newFirstName').style.borderColor = "#e5e5e5";
+        // }
+        // if (!validateName(lastName)) {
+        //     document.getElementById('newLastName').style.borderColor = "red";
+        //     inputLastName.value = '';
+        // } else {
+        //     document.getElementById('newLastName').style.borderColor = "#e5e5e5";
+        // }
+    }
+
+
+    // function submitEditUser() {
+    //     let emailVal = inputEmail.value,
+    //         phoneVal = inputPhone.value,
+    //         emptyInputs = Array.from(formInputs).filter(input => input.value === '');
+    //
+    //     formInputs.forEach(function (input) {
+    //         if (input.value === '') {
+    //             input.classList.add('error');
+    //
+    //         } else {
+    //             input.classList.remove('error');
+    //         }
+    //     });
+    //
+    //     if (emptyInputs.length !== 0) {
+    //         console.log('inputs not filled');
+    //         return false;
+    //     }
+    //
+    //     if(!validateEmail(emailVal)) {
+    //         console.log('email not valid');
+    //         inputEmail.classList.add('error');
+    //         return false;
+    //     } else {
+    //         inputEmail.classList.remove('error');
+    //     }
+    //
+    //     if (validateCountry(emailVal)) {
+    //         console.log('email from Columbia');
+    //         inputEmail.classList.add('error');
+    //         return false;
+    //     } else {
+    //         inputEmail.classList.remove('error');
+    //     }
+    //
+    //     if (!validatePhone(phoneVal)) {
+    //         console.log('phone not valid');
+    //         inputPhone.classList.add('error');
+    //         return false;
+    //     } else {
+    //         inputPhone.classList.remove('error');
+    //     }
+    //
+    //     if(!inputCheckbox.checked) {
+    //         console.log('checkbox not checked');
+    //         inputCheckbox.classList.add('error');
+    //         return false;
+    //     } else {
+    //         inputCheckbox.classList.remove('error')
+    //     }
+    // }
+
+
+</script>
+
 <body style="background: #f0f0f0">
 <div>
 
@@ -111,7 +228,8 @@
                                                                 <div class="col-sm" id="id"
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="text"
-                                                                           class="form-control form-control-sm" id="id"
+                                                                           class="form-control form-control-sm"
+                                                                           id="editID"
                                                                            th:name="id" th:value="*{id}" readonly/>
                                                                 </div>
 
@@ -122,8 +240,9 @@
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="text"
                                                                            class="form-control form-control-sm"
-                                                                           id="firstname" th:name="firstName"
-                                                                           th:value="*{firstName}"/>
+                                                                           id="editFirstName" th:name="firstName"
+                                                                           th:value="*{firstName}" required
+                                                                           pattern="^[A-Za-zА-Яа-яЁё]+"/>
                                                                 </div>
 
                                                                 <label for="lastname" class="form-label"
@@ -133,8 +252,9 @@
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="text"
                                                                            class="form-control form-control-sm"
-                                                                           id="lastname" th:name="lastName"
-                                                                           th:value="*{lastName}"/>
+                                                                           id="editLastName" th:name="lastName"
+                                                                           th:value="*{lastName}" required
+                                                                           pattern="^[A-Za-zА-Яа-яЁё]+"/>
                                                                 </div>
 
                                                                 <label for="age" class="form-label"
@@ -142,18 +262,21 @@
                                                                 <div class="col-sm" id="age"
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="number"
-                                                                           class="form-control form-control-sm" id="age"
-                                                                           th:name="age" th:value="*{age}"/>
+                                                                           class="form-control form-control-sm"
+                                                                           id="editAge"
+                                                                           th:name="age" th:value="*{age}" required
+                                                                           min="1" max="2023"/>
                                                                 </div>
 
-                                                                <label for="email" class="form-label"
+                                                                <label for="divEditUsername" class="form-label"
                                                                        style="font-weight: bold; margin-bottom: 0%; margin-top: 1%">Email</label>
-                                                                <div class="col-sm" id="email"
+                                                                <div class="col-sm" id="divEditUsername"
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="text"
                                                                            class="form-control form-control-sm"
-                                                                           id="email" th:name="username"
-                                                                           th:value="*{username}"/>
+                                                                           id="editUsername" th:name="username"
+                                                                           th:value="*{username}" required
+                                                                           pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'/>
                                                                 </div>
 
                                                                 <label for="password" class="form-label"
@@ -162,8 +285,9 @@
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                                                     <input type="password"
                                                                            class="form-control form-control-sm"
-                                                                           id="password" th:name="password"
-                                                                           th:value="*{password}"/>
+                                                                           id="editPassword" th:name="password"
+                                                                           th:value="*{password}" required
+                                                                           minlength="1"/>
                                                                 </div>
 
                                                                 <div class="form-group-lg"
@@ -186,7 +310,9 @@
                                                             <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close
                                                             </button>
-                                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                                            <button type="submit" class="btn btn-primary"
+                                                                    onclick="submitEditUser()">Edit
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -309,35 +435,40 @@
                                     <div class="col-sm" id="firstname"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                         <input type="text" class="form-control form-control-sm" id="firstname"
-                                               placeholder="First Name" th:name="firstName" th:value="*{firstName}"/>
+                                               placeholder="First Name" th:name="firstName" th:value="*{firstName}"
+                                               required pattern="^[A-Za-zА-Яа-яЁё]+"/>
                                     </div>
 
                                     <label for="lastname" class="form-label" style="font-weight: bold">Last Name</label>
                                     <div class="col-sm" id="lastname"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                         <input type="text" class="form-control form-control-sm" id="lastname"
-                                               placeholder="Last Name" th:name="lastName" th:value="*{lastName}">
+                                               placeholder="Last Name" th:name="lastName" th:value="*{lastName}"
+                                               required pattern="^[A-Za-zА-Яа-яЁё]+">
                                     </div>
 
                                     <label for="age" class="form-label" style="font-weight: bold">Age</label>
                                     <div class="col-sm" id="age"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                         <input type="number" class="form-control form-control-sm" id="age"
-                                               placeholder="Age" th:name="age" th:value="*{age}">
+                                               placeholder="Age" th:name="age" th:value="*{age}" min="1" max="2023"
+                                               required>
                                     </div>
 
                                     <label for="email" class="form-label" style="font-weight: bold">Email</label>
                                     <div class="col-sm" id="email"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                         <input type="text" class="form-control form-control-sm" id="email"
-                                               placeholder="Email" th:name="username" th:value="*{username}">
+                                               placeholder="Email" th:name="username" th:value="*{username}" required
+                                               pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'>
                                     </div>
 
                                     <label for="password" class="form-label" style="font-weight: bold">Password</label>
                                     <div class="col-sm" id="password"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
                                         <input type="password" class="form-control form-control-sm" id="password"
-                                               placeholder="Password" th:name="password" th:value="*{password}">
+                                               placeholder="Password" th:name="password" th:value="*{password}" required
+                                               minlength="1">
                                     </div>
 
                                     <div class="form-group-lg"
@@ -410,5 +541,13 @@
         background-color: lightgrey;
         color: #6c757d;
         cursor: not-allowed;
+    }
+
+    input:valid:not(:placeholder-shown) {
+        border: 1px solid grey;
+    }
+
+    input:invalid:not(:placeholder-shown) {
+        border: 1px solid red;
     }
 </style>
