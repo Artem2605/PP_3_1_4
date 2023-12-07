@@ -57,18 +57,28 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public boolean saveUser(User user) {
+        //проверяем есть ли юзер с таким юзернеймом
+        if (userRepository.findByUsername(user.getUsername()) == null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void updateUser(User user) {
-        if (!getUserById(user.getId()).getPassword().equals(user.getPassword())) {
-            saveUser(user);
-        } else {
+    public boolean updateUser(User user) {
+        User checkUser = userRepository.findByUsername(user.getUsername());
+        //проверяем что юзера с таким юззернеймом не существует ИЛИ такой юзернейм принадлежит ему же
+        if (checkUser == null || checkUser.getId() == user.getId()) {
+            if (!getUserById(user.getId()).getPassword().equals(user.getPassword())) {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
             userRepository.save(user);
+            return true;
         }
+        return false;
     }
 
     @Override

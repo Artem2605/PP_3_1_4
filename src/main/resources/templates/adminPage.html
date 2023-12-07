@@ -154,11 +154,10 @@
                                                                        style="font-weight: bold; margin-bottom: 0%; margin-top: 1%">Email</label>
                                                                 <div class="col-sm" id="divEditUsername"
                                                                      style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
-                                                                    <input type="text"
+                                                                    <input type="email"
                                                                            class="form-control form-control-sm"
                                                                            id="editUsername" th:name="username"
-                                                                           th:value="*{username}" required
-                                                                           pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'/>
+                                                                           th:value="*{username}" required/>
                                                                 </div>
 
                                                                 <label for="password" class="form-label"
@@ -340,10 +339,8 @@
                                     <label for="email" class="form-label" style="font-weight: bold">Email</label>
                                     <div class="col-sm" id="email"
                                          style="border: 1px solid #e5e5e5; margin-left: 25%; margin-right: 25%">
-                                        <input type="text" class="form-control form-control-sm" id="inputNewUsername"
-                                               placeholder="Email" th:name="username" th:value="*{username}" required
-                                               pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))'
-                                        >
+                                        <input type="email" class="form-control form-control-sm" id="username"
+                                               placeholder="Email" th:name="username" th:value="*{username}" required>
                                     </div>
 
                                     <label for="password" class="form-label" style="font-weight: bold">Password</label>

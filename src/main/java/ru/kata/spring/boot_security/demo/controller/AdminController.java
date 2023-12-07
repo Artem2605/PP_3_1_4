@@ -38,8 +38,8 @@ public class AdminController {
     @PostMapping("/admin/addUser")
     public String createUser(@ModelAttribute("newUser") @Valid User user,
                              BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            userService.saveUser(user);
+        if (!bindingResult.hasErrors() && !userService.saveUser(user)) {
+            return "errPage";
         }
         return "redirect:/admin";
     }
@@ -47,8 +47,8 @@ public class AdminController {
     @PostMapping("/admin/updateUser")
     public String updateUser(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            userService.updateUser(user);
+        if (!bindingResult.hasErrors() && !userService.updateUser(user)) {
+            return "errPage";
         }
         return "redirect:/admin";
     }
